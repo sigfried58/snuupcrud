@@ -1,0 +1,33 @@
+{
+  "name": "snuupcrud",
+  "version": "1.0.0",
+  "description": "RESTful snuupcrud",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sigfried58/snuupcrud.git"
+  },
+  "keywords": [
+    "Api"
+  ],
+  "author": "Jimmy Ibanez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sigfried58/snuupcrud/issues"
+  },
+  "homepage": "https://github.com/sigfried58/snuupcrud#readme",
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  },
+  "dependencies": {
+    "async": "^2.5.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.15.5",
+    "express-myconnection": "^1.0.4",
+    "mysql": "^2.14.1",
+    "pug": "^2.0.0-rc.4"
+  }
+}
