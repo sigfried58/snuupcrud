@@ -11,6 +11,7 @@ exports.list = function(req, res){
         connection.query('Select * from mock_data', cb);
     }], (err, rows, field) => {
         if (err) {
+          console.log(`Error: ${JSON.stringify(err)}`);
           return res
             .status(500)
             .send({
@@ -79,6 +80,7 @@ exports.save = function(req,res){
         connection.query("Insert into mock_data set ? ",data, cb);
     }], (err, result) => {
         if (err) {
+          console.log(`Error: ${JSON.stringify(err)}`);
           return res
             .status(500)
             .send({
@@ -158,6 +160,7 @@ exports.edit = function(req,res){
         connection.query("Update mock_data set ? where id = ? ",[data, id], cb)
     }], (err, result) => {
         if (err) {
+          console.log(`Error: ${JSON.stringify(err)}`);
           return res
             .status(500)
             .send({
@@ -213,6 +216,7 @@ exports.delete = function(req,res){
         connection.query("Delete from mock_data where id = ?",[id], cb);
     }], (err, result) => {
         if (err) {
+          console.log(`Error: ${JSON.stringify(err)}`);
           return res
             .status(500)
             .send({
@@ -246,6 +250,7 @@ exports.login = function(req, res) {
             return res
             .status(403)
             .send({
+                success: false,
                 message: 'Parametros no enviados, favor revisar'
             });
         }
@@ -260,6 +265,7 @@ exports.login = function(req, res) {
             return res
             .status(403)
             .send({
+                success: false,
                 message: 'El usuario no se encuentra en el sistema'
             });
         }
@@ -270,18 +276,22 @@ exports.login = function(req, res) {
         ' FROM mock_data where Username = ? and password = ? COLLATE utf8_bin',[auth.username.toLowerCase(), auth.password], cb);
     }], (err, result) => {
         if (err) {
+          console.log(`Error: ${JSON.stringify(err)}`);
           return res
             .status(500)
             .send({
-              success: false
+              success: false,
+              message: 'Ocurrio un error al autenticarse en el sistema'
             });
         }
         if (!result.length) return res.status(500).send({
-          success: false
+          success: false,
+          message: 'Ocurrio un error al autenticarse en el sistema'
         });
 
         return res.status(200).send({
-          success: true
+          success: true,
+          user: result
         });
     });
 };
