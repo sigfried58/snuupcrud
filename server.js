@@ -3,7 +3,8 @@ var express = require('express'),
   port = process.env.PORT || 3000;
   bodyParser = require('body-parser'),
   mysql = require('mysql'),
-  connection  = require('express-myconnection'); 
+  connection  = require('express-myconnection'),
+  morgan = require('morgan'); 
   
 app.use(
     connection(mysql,{
@@ -17,6 +18,7 @@ app.use(
 
 app.set('view engine', 'pug');
 
+app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
